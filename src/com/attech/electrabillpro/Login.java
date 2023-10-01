@@ -55,11 +55,11 @@ public class Login extends JFrame {
 
 
         //Buttons
-        logInButton = new JButton("Log In");
+        logInButton = new JButton("Log In", new ImageIcon(getImgFromRes("login_icon_small.jpg")));
         logInButton.setBounds(paramsForm[0]+buttonOffset[0], paramsForm[1]+3*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
-        cancelButton = new JButton("Cancel");
+        cancelButton = new JButton("Cancel", new ImageIcon(getImgFromRes("cancel_icon.png")));
         cancelButton.setBounds(paramsForm[0]+buttonOffset[0]+marginBwFields[0], paramsForm[1]+3*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
-        signUpButton = new JButton("Sign Up");
+        signUpButton = new JButton("Sign Up", new ImageIcon(getImgFromRes("signup_icon.jpg")));
         signUpButton.setBounds(paramsForm[0]+marginBwFields[0]-2*buttonOffset[0], paramsForm[1]+4*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
         add(logInButton);
         add(signUpButton);
@@ -75,6 +75,10 @@ public class Login extends JFrame {
 
         setVisible(true);
 
+    }
+
+    private Image getImgFromRes(String resName){
+        return new ImageIcon(ClassLoader.getSystemResource("icons/"+resName)).getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT);
     }
 
     public static void main(String[] args){
