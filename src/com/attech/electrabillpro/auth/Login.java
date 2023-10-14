@@ -1,4 +1,4 @@
-package com.attech.electrabillpro;
+package com.attech.electrabillpro.auth;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ public class Login extends JFrame {
     private final int[] buttonSize = {100, 20};
     private final int[] buttonOffset = {20, 20};
 
-    Login(){
+    public Login(){
         super("Login Page");
         setLayout(null);
         getContentPane().setBackground(Color.WHITE);
@@ -55,11 +55,17 @@ public class Login extends JFrame {
 
 
         //Buttons
-        logInButton = new JButton("Log In", new ImageIcon(getImgFromRes("login_icon_small.jpg")));
+        logInButton = new JButton("Log In"
+             //   , new ImageIcon(getImgFromRes("login_icon_small.jpg"))
+        );
         logInButton.setBounds(paramsForm[0]+buttonOffset[0], paramsForm[1]+3*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
-        cancelButton = new JButton("Cancel", new ImageIcon(getImgFromRes("cancel_icon.png")));
+        cancelButton = new JButton("Cancel"
+             //   , new ImageIcon(getImgFromRes("cancel_icon.png"))
+        );
         cancelButton.setBounds(paramsForm[0]+buttonOffset[0]+marginBwFields[0], paramsForm[1]+3*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
-        signUpButton = new JButton("Sign Up", new ImageIcon(getImgFromRes("signup_icon.jpg")));
+        signUpButton = new JButton("Sign Up"
+             //   , new ImageIcon(getImgFromRes("signup_icon.jpg"))
+        );
         signUpButton.setBounds(paramsForm[0]+marginBwFields[0]-2*buttonOffset[0], paramsForm[1]+4*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
         add(logInButton);
         add(signUpButton);

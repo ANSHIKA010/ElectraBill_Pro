@@ -1,5 +1,7 @@
 package com.attech.electrabillpro;
 
+import com.attech.electrabillpro.auth.Login;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,28 +13,21 @@ public class Splash extends JFrame implements Runnable{
         Image image = imageIcon.getImage().getScaledInstance(750, 500, Image.SCALE_DEFAULT);
         JLabel jLabel = new JLabel(new ImageIcon(image));
         add(jLabel);
-        setVisible(true);
 
 
         thread2 = new Thread(this);
         thread2.start();
 
-        for(int i=0,j=0; i<=750&&j<=500 ; i+=3, j+=2){
-            setSize(i, j);
-            setLocation(650-i/3, 400-j/2);
-            try {
-                Thread.sleep(4);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+        setSize(750, 500);
+        setLocation(400, 150);
+        setVisible(true);
 
     }
 
     @Override
     public void run() {
         try{
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             setVisible(false);
             new Login();
         }catch (Exception e){
