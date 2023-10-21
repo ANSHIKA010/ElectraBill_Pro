@@ -2,8 +2,10 @@ package com.attech.electrabillpro.auth;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener {
 
     private JLabel userNameLabel, passwordLabel, logInAsLabel;
     private JTextField userNameText, passwordText;
@@ -71,6 +73,11 @@ public class Login extends JFrame {
         add(signUpButton);
         add(cancelButton);
 
+        //OnClickLogic
+        logInButton.addActionListener(this);
+        signUpButton.addActionListener(this);
+        cancelButton.addActionListener(this);
+
 
         //Side Image
         Image sideImage = new ImageIcon(ClassLoader.getSystemResource("icons/auth_image.jpg")).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT);
@@ -91,4 +98,14 @@ public class Login extends JFrame {
         new Login();
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == logInButton){
+
+        }else if(e.getSource() == cancelButton){
+
+        }else if(e.getSource() == signUpButton){
+
+        }
+    }
 }
