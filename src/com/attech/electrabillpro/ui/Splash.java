@@ -1,6 +1,6 @@
-package com.attech.electrabillpro;
+package com.attech.electrabillpro.ui;
 
-import com.attech.electrabillpro.auth.Login;
+import com.attech.electrabillpro.ui.auth.Login;
 
 import javax.swing.*;
 import java.awt.*;

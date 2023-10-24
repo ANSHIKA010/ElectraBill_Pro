@@ -1,14 +1,26 @@
-package com.attech.electrabillpro.auth;
+package com.attech.electrabillpro.ui.auth;
+
+import com.attech.electrabillpro.database.Conn;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
-public class Signup extends JFrame {
+public class Signup extends JFrame implements ActionListener {
+
+
+    private JButton createButton, backButton;
+    JPanel panel;
+    JTextField meter, username, name, password;
+    Choice accountType;
+
 
     Signup(){
-        setBounds(450, 150, 700, 400);
+        setBounds(400, 150, 720, 400);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
 
@@ -28,7 +40,7 @@ public class Signup extends JFrame {
 
 
         //Form Fields
-        Choice accountType= new Choice();
+        accountType= new Choice();
         accountType.add("Admin");
         accountType.add("Customer");
         accountType.setBounds(220, 50, 150, 20);
@@ -40,7 +52,7 @@ public class Signup extends JFrame {
         meterLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         panel.add(meterLabel);
 
-        JTextField meter = new JTextField();
+        meter = new JTextField();
         meter.setBounds(220, 90, 150, 20);
         panel.add(meter);
 
@@ -50,7 +62,7 @@ public class Signup extends JFrame {
         uNameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         panel.add(uNameLabel);
 
-        JTextField username = new JTextField();
+        username = new JTextField();
         username.setBounds(220, 130, 150, 20);
         panel.add(username);
 
@@ -60,7 +72,7 @@ public class Signup extends JFrame {
         nameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         panel.add(nameLabel);
 
-        JTextField name = new JTextField();
+        name = new JTextField();
         name.setBounds(220, 170, 150, 20);
         panel.add(name);
 
@@ -70,17 +82,17 @@ public class Signup extends JFrame {
         passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         panel.add(passwordLabel);
 
-        JTextField password = new JTextField();
+        password = new JTextField();
         password.setBounds(220, 210, 150, 20);
         panel.add(password);
 
-        JButton createButton =  new JButton("Create");
+        createButton = new JButton("Create");
         createButton.setBackground(Color.BLACK);
         createButton.setForeground(Color.WHITE);
         createButton.setBounds(100, 260, 120, 25);
         panel.add(createButton);
 
-        JButton backButton =  new JButton("Back");
+        backButton =  new JButton("Back");
         backButton.setBackground(Color.BLACK);
         backButton.setForeground(Color.WHITE);
         backButton.setBounds(260, 260, 120, 25);
@@ -93,12 +105,45 @@ public class Signup extends JFrame {
         panel.add(sideImageLabel);
 
 
+        //adding listeners to buttons
+        createButton.addActionListener(this);
+        backButton.addActionListener(this);
+
 
         setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == createButton){
+            String aType = accountType.getSelectedItem();
+            String meterNo = meter.getText();
+            String sUsername = username.getText();
+            String sName = name.getText();
+            String sPassword = password.getText();
+
+            try {
+                Conn c = new Conn();
+                String query = "INSERT INTO auth(username, meter_no, name, password, user_type) VALUES('"+sUsername+"','"+meterNo+"','"+sName+"','"+sPassword+"','"+aType+"')";
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Account Created Successfully!");
+                setVisible(false);
+                new Login();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+
+
+        }else if(e.getSource() == backButton){
+            setVisible(false);
+            new Login();
+        }
+    }
+
+
     public static void main(String[] args){
         new Signup();
     }
+
 
 }

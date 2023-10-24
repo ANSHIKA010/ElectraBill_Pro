@@ -1,4 +1,4 @@
-package com.attech.electrabillpro.auth;
+package com.attech.electrabillpro.ui.auth;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +13,9 @@ public class Login extends JFrame implements ActionListener {
     private JButton logInButton, signUpButton, cancelButton;
 
     private final int[] paramsForm = {350, 60};
+
+
+
     private final int[] marginBwFields = {120, 40};
     private final int[] labelSize = {80, 20};
     private final int[] fieldSize = {150, 20};
@@ -23,7 +26,7 @@ public class Login extends JFrame implements ActionListener {
         super("Login Page");
         setLayout(null);
         getContentPane().setBackground(Color.WHITE);
-        setSize(720, 360);
+        setSize(720, 400);
         setLocation(400, 150);
 
 
@@ -58,7 +61,7 @@ public class Login extends JFrame implements ActionListener {
 
         //Buttons
         logInButton = new JButton("Log In"
-             //   , new ImageIcon(getImgFromRes("login_icon_small.jpg"))
+//                , new ImageIcon(getImgFromRes("login_icon_small.jpg"))
         );
         logInButton.setBounds(paramsForm[0]+buttonOffset[0], paramsForm[1]+3*marginBwFields[1]+buttonOffset[1], buttonSize[0], buttonSize[1]);
         cancelButton = new JButton("Cancel"
@@ -103,9 +106,10 @@ public class Login extends JFrame implements ActionListener {
         if(e.getSource() == logInButton){
 
         }else if(e.getSource() == cancelButton){
-
+            setVisible(false);
         }else if(e.getSource() == signUpButton){
-
+            setVisible(false);
+            new Signup();
         }
     }
 }
